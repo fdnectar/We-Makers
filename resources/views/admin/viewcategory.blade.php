@@ -20,6 +20,9 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                @if(Session::has('success'))
+                <div class="alert alert-success">{{Session::get('success')}}</div>
+                @endif
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -56,7 +59,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                                                <a href="{{url('admin/edit-category/' .$data->id)}}" class="btn btn-success"><i class="fa fa-edit"></i></a>
                                                 <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>

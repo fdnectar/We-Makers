@@ -43,4 +43,38 @@ class CategoryController extends Controller
         return redirect('admin/view-category')->with('success', 'Category Added Succesfully');
         // return back()->with('success', 'Category Added Succesfully');
     }
+
+    public function viewEditCategory($category_id)
+    {
+        $category = Category::find($category_id);
+        return view('admin.edit_category', compact('category'));
+    }
+
+    public function updateCategory(Request $request, $category_id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+            'image' => 'required|mimes:png,jpeg,jpg',
+        ]);
+
+        $category = Category::find($category_id);
+
+        $category->name = $request['name'];
+        $category->name = $request['title'];
+        if ($request->hasfile('image')) {
+            $destination = 'uploads/category/' . $category->image;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/category/', $filename);
+            $category->image = $filename;
+        }
+        $category->status = $request->status;
+        $category->update();
+        return redirect('admin/view-category')->with('success', 'Category Updated Succesfully');
+    }
 }

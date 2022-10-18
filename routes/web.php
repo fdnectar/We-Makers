@@ -24,4 +24,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/view-category', [CategoryController::class, 'index'])->middleware('isLoggedIn');
     Route::get('/add-category', [CategoryController::class, 'addCategory'])->middleware('isLoggedIn');
     Route::post('/store-category', [CategoryController::class, 'storeCategory'])->name('store-category')->middleware('isLoggedIn');
+    Route::get('/edit-category/{category_id}', [CategoryController::class, 'viewEditCategory'])->middleware('isLoggedIn');
+    Route::put('/update-category/{category_id}', [CategoryController::class, 'updateCategory'])->middleware('isLoggedIn');
 });
