@@ -61,20 +61,30 @@ class CategoryController extends Controller
         $category = Category::find($category_id);
 
         $category->name = $request['name'];
-        $category->name = $request['title'];
+        $category->title = $request['title'];
         if ($request->hasfile('image')) {
             $destination = 'uploads/category/' . $category->image;
             if (File::exists($destination)) {
                 File::delete($destination);
             }
-
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move('uploads/category/', $filename);
             $category->image = $filename;
         }
         $category->status = $request->status;
-        $category->update();
+        $category->save();
         return redirect('admin/view-category')->with('success', 'Category Updated Succesfully');
+    }
+
+    public function deleteCategory($category_id)
+    {
+        $category = Category::find($category_id);
+        $destination = 'uploads/category/' . $category->image;
+        if (File::exists($destination)) {
+            File::delete($destination);
+        }
+        $category->delete();
+        return redirect('admin/view-category')->with('success', 'Category Deleted Succesfully');
     }
 }

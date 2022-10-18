@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ItemsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/add-category', [CategoryController::class, 'addCategory'])->middleware('isLoggedIn');
     Route::post('/store-category', [CategoryController::class, 'storeCategory'])->name('store-category')->middleware('isLoggedIn');
     Route::get('/edit-category/{category_id}', [CategoryController::class, 'viewEditCategory'])->middleware('isLoggedIn');
-    Route::put('/update-category/{category_id}', [CategoryController::class, 'updateCategory'])->middleware('isLoggedIn');
+    Route::post('/update-category/{category_id}', [CategoryController::class, 'updateCategory'])->middleware('isLoggedIn');
+    Route::get('/delete-category/{category_id}', [CategoryController::class, 'deleteCategory'])->middleware('isLoggedIn');
+
+    Route::get('/view-items', [ItemsController::class, 'index'])->middleware('isLoggedIn');
+    Route::get('/add-items', [ItemsController::class, 'addItems'])->middleware('isLoggedIn');
+    Route::post('/store-item', [ItemsController::class, 'storeItem'])->name('store-item')->middleware('isLoggedIn');
+    Route::get('/edit-item/{item_id}', [ItemsController::class, 'viewEditItem'])->middleware('isLoggedIn');
+    Route::post('/update-item/{item_id}', [ItemsController::class, 'updateItem'])->middleware('isLoggedIn');
+    Route::get('/delete-item/{item_id}', [ItemsController::class, 'deleteItem'])->middleware('isLoggedIn');
 });

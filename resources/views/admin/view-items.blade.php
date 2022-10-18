@@ -1,5 +1,5 @@
 @extends('master.app')
-@section('title', 'View Category')
+@section('title', 'View Items')
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">View Category</li>
+                        <li class="breadcrumb-item active">View Items</li>
                     </ol>
                 </div>
             </div>
@@ -26,29 +26,29 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Category Listing with status</h3>
+                            <h3 class="card-title">Sub Categories Listing with status</h3>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>Sr No</th>
-                                        <th>Category Name</th>
-                                        <th>Category Title</th>
-                                        <th>Category Image</th>
-                                        <th>Category Status</th>
+                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Image</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($category as $data) { ?>
+                                    foreach ($item as $data) { ?>
                                         <tr>
                                             <td><?php echo $i; ?></td>
                                             <td>{{$data->name}}</td>
                                             <td style="width: 40%;">{{$data->title}}</td>
                                             <td>
-                                                <img src="{{ asset('uploads/category/'.$data->image)}}" width="50px" height="50px" alt="">
+                                                <img src="{{ asset('uploads/items/'.$data->image)}}" width="50px" height="50px" alt="">
                                             </td>
                                             <td>
                                                 @if($data->status == '1')
@@ -58,8 +58,8 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{url('admin/edit-category/' .$data->id)}}" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                                                <a href="{{url('admin/delete-category/' .$data->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                                <a href="{{url('admin/edit-item/' .$data->id)}}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                                                <a href="{{url('admin/delete-item/' .$data->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     <?php $i++;
@@ -68,10 +68,10 @@
                                 <tfoot>
                                     <tr>
                                         <th>Sr No</th>
-                                        <th>Category Name</th>
-                                        <th>Category Title</th>
-                                        <th>Category Image</th>
-                                        <th>Category Status</th>
+                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Image</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
