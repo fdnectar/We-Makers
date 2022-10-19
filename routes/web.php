@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ItemsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/update-item/{item_id}', [ItemsController::class, 'updateItem'])->middleware('isLoggedIn');
     Route::get('/delete-item/{item_id}', [ItemsController::class, 'deleteItem'])->middleware('isLoggedIn');
 });
+
+
+//frontend routes
+
+Route::get('/home-page', [FrontendController::class, 'index']);

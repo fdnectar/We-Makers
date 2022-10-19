@@ -1,0 +1,15 @@
+
+.sub-head {
+    font-size: 1.6rem;
+    font-weight: 650;
+}
+
+.row-section-img {
+    margin-bottom: 10px;
+}
+
+.row-section-1 {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
